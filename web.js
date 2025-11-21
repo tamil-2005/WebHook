@@ -13,10 +13,14 @@ app.post("/webhook", (req, res) => {
   res.status(200).send("Webhook received");
 });
 
+app.get("/webhook",(req,res)=>{
+  res.status(200).send("Running");
+})
 
 
 
 
-app.listen(3000, () => {
+
+app.listen(3000, (req,res) => {
   console.log("server running on port 3000");
 });
