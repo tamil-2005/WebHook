@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h2>Live Webhook Data (Auto Update)</h2>
-  <pre id="output">Waiting for updates...</pre>
+<h2>Live Webhook Updates</h2>
+<pre id="output"></pre>
 
-  <script>
-    const output = document.getElementById("output");
-    const events = new EventSource("/api/events");
+<script>
+  const eventSource = new EventSource("http://localhost:3000/events");
 
-    events.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      output.textContent = JSON.stringify(data, null, 2);
-    };
-  </script>
+  eventSource.onmessage = (event) => {
+    document.getElementById("output").textContent = event.data;
+    console.log("Received update:", event.data);
+  };
+</script>
+
 </body>
 </html>
