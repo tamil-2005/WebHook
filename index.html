@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Live Webhook Data (Auto Update)</h2>
+  <pre id="output">Waiting for updates...</pre>
+
+  <script>
+    const output = document.getElementById("output");
+
+    // Listen to SSE updates from server
+    const events = new EventSource("http://localhost:3000/events");
+
+    events.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      output.textContent = JSON.stringify(data, null, 2);
+    };
+  </script>
+</body>
+</html>
